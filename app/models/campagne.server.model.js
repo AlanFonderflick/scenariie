@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
+	Schema = mongoose.Schema,
+	GamesessionSchema = require('./gamesession.server.model');
 
 /**
  * Campagne Schema
@@ -29,11 +30,7 @@ var CampagneSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
-	sessions: [{
-		date: Date,
-		summary: String,
-		title: String
-	}],
+	gameSessions: [GamesessionSchema],
 	players: [{
 		type: Schema.ObjectId,
 		ref: 'User'

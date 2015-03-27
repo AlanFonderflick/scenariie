@@ -1,0 +1,19 @@
+<section data-ng-controller="GamesessionsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Gamesessions</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="gamesession in gamesessions" data-ng-href="#!/gamesessions/{{gamesession._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="gamesession.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="gamesession.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="gamesession.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!gamesessions.$resolved || gamesessions.length">
+    	No Gamesessions yet, why don't you <a href="/#!/gamesessions/create">create one</a>?
+    </div>
+</section>
