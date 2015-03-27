@@ -9,15 +9,17 @@ angular.module('gamesessions').controller('GamesessionsController', ['$scope', '
 		$scope.create = function() {
 			// Create new Gamesession object
 			var gamesession = new Gamesessions ({
-				name: this.name
+				title: this.title,
+				summary: this.summary
 			});
 
 			// Redirect after save
 			gamesession.$save(function(response) {
-				$location.path('gamesessions/' + response._id);
+				$location.path('/campagnes/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.title = '';
+				$scope.summary ='';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

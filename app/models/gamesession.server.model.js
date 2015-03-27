@@ -10,12 +10,6 @@ var mongoose = require('mongoose'),
  * Gamesession Schema
  */
 var GamesessionSchema = new Schema({
-	name: {
-		type: String,
-		default: '',
-		required: 'Please fill Gamesession name',
-		trim: true
-	},
 	created: {
 		type: Date,
 		default: Date.now
@@ -36,6 +30,7 @@ var GamesessionSchema = new Schema({
 	title: {
 		type: String,
 		trim: true,
+		required: 'Veuillez préciser un intitulé de séance',		
 		default: ''
 	}
 });
