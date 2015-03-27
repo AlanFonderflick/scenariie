@@ -12,10 +12,16 @@
 	</div>
 	<small>
 		<em class="text-muted">
-			Posted on
+			Créé le
 			<span data-ng-bind="campagne.created | date:'mediumDate'"></span>
-			by
+			par
 			<span data-ng-bind="campagne.user.displayName"></span>
 		</em>
 	</small>
+	<p data-ng-bind="campagne.description"></p>
+
+    <div class="alert alert-warning text-center" data-ng-hide="campagne.gamesessions.length">
+    	Aucune séance programmée, <a href="/#!/campagnes/{{campagne._id}}/create">en créer une !</a>
+    </div>
+
 </section>
