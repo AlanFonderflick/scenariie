@@ -43,15 +43,15 @@ angular.module('gamesessions').controller('GamesessionsController', ['$scope', '
 		};
 
 		// Update existing Gamesession
-		// $scope.update = function() {
-		// 	var gamesession = $scope.gamesession;
+		$scope.update = function() {
+			var gamesession = $scope.gamesession;
 
-		// 	gamesession.$update(function() {
-		// 		$location.path('gamesessions/' + gamesession._id);
-		// 	}, function(errorResponse) {
-		// 		$scope.error = errorResponse.data.message;
-		// 	});
-		// };
+			gamesession.$update(function() {
+				$location.path('gamesessions/' + gamesession._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
 
 		// Find a list of Gamesessions
 		$scope.find = function() {

@@ -1,6 +1,7 @@
 <section data-ng-controller="CampagnesController" data-ng-init="find()">
     <div class="page-header">
         <h1>Campagnes</h1>
+        <p class="lead">Liste des campagnes en cours.</p>
     </div>
     <div class="list-group">
         <a data-ng-repeat="campagne in campagnes" data-ng-href="#!/campagnes/{{campagne._id}}" class="list-group-item">

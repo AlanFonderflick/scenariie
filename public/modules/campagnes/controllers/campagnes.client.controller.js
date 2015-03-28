@@ -51,7 +51,7 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 		};
 
 		// Update existing Campagne
-		$scope.update = function() {
+		$scope.update = function(isValid) {
 			$scope.newGameSession = {
 				title: $scope.title,
 				summary: $scope.summary
@@ -60,12 +60,14 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 			$scope.campagne.gameSessions.push($scope.newGameSession);
 
 			var campagne = $scope.campagne;
-			console.log(campagne);
-			campagne.$update(function() {
-				$location.path('campagnes/' + campagne._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+
+			if(isValid){
+				campagne.$update(function() {
+					$location.path('campagnes/' + campagne._id);
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+			}
 		};
 
 		// Find a list of Campagnes

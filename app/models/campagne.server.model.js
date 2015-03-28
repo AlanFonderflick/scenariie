@@ -14,7 +14,7 @@ var CampagneSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		required: 'Please fill Campagne name',
+		required: 'Veuillez préciser le nom de la campagne',
 		trim: true
 	},
 	description: {

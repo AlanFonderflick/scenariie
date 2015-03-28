@@ -24,8 +24,8 @@
 
 	<div class="list-group">
 		<a data-ng-repeat="game in campagne.gameSessions" class="list-group-item">
-			<p data-ng-bind="game.title"></p>
-			<p data-ng-bind="game.summary"></p>
+			<h4 class="list-group-item-heading" data-ng-bind="game.title"></h4>
+			<p class="list-group-item-text" data-ng-bind-html="game.slogan"></p>
 		</a>
 	</div>
 

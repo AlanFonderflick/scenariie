@@ -9,6 +9,15 @@ var mongoose = require('mongoose'),
 /**
  * Gamesession Schema
  */
+
+var notEmpty = function(gameSession){
+    if(gameSession.sumarry.length === 0){
+    	return false;
+    }
+    else {return true;}
+};
+
+
 var GamesessionSchema = new Schema({
 	created: {
 		type: Date,
@@ -25,14 +34,22 @@ var GamesessionSchema = new Schema({
 	summary: {
 		type: String,
 		trim: true,
-		default: ''
+		default: '',
+		require: true,
+		validate : [notEmpty, 'Veuillez compléter le résumé de la séance']
 	},
 	title: {
 		type: String,
 		trim: true,
 		required: 'Veuillez préciser un intitulé de séance',		
 		default: ''
-	}
+	},
+	slogan: {
+		type: String,
+		trim: true,
+		required: 'Veuillez préciser un slogan',		
+		default: ''
+	}	
 });
 
 mongoose.model('Gamesession', GamesessionSchema);
