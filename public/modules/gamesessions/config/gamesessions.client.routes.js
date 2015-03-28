@@ -1,7 +1,7 @@
 'use strict';
 
 //Setting up route
-angular.module('gamesessions').config(['$stateProvider',
+angular.module('gamesessions').config(['$stateProvider', 
 	function($stateProvider) {
 		// Gamesessions state routing
 		$stateProvider.
@@ -14,11 +14,11 @@ angular.module('gamesessions').config(['$stateProvider',
 			templateUrl: 'modules/gamesessions/views/create-gamesession.client.view.html'
 		}).
 		state('viewGamesession', {
-			url: '/campagnes/:campagneId/gamesessions/:gamesessionId',
+			url: '/campagnes/:campagneId/:gamesessionId',
 			templateUrl: 'modules/gamesessions/views/view-gamesession.client.view.html'
 		}).
 		state('editGamesession', {
-			url: '/campagnes/:campagneId/gamesessions/:gamesessionId/edit',
+			url: '/campagnes/:campagneId/:gamesessionId/edit',
 			templateUrl: 'modules/gamesessions/views/edit-gamesession.client.view.html'
 		});
 	}

@@ -17,9 +17,11 @@ module.exports = function(app) {
 		.delete(users.requiresLogin, campagnes.hasAuthorization, campagnes.delete);
 
 	// Campagne gameSession
-	app.route('/campagnes/:campagneId/:gameSessionId')
+	app.route('/campagnes/:gameSessionId')
 		.get(gameSessions.read)
-		.put(users.requiresLogin, gameSessions.hasAuthorization, gameSessions.update)
+		.put(users.requiresLogin, campagnes.hasAuthorization, campagnes.update)
+
+		//A changer pour update le fichier, et l'enregistrer sans la session à supprimer
 		.delete(users.requiresLogin, gameSessions.hasAuthorization, gameSessions.delete);
 
 	// Finish by binding the Campagne middleware

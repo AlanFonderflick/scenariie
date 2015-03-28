@@ -5,9 +5,8 @@
     <div class="list-group">
         <a data-ng-repeat="campagne in campagnes" data-ng-href="#!/campagnes/{{campagne._id}}" class="list-group-item">
 			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="campagne.created | date:'medium'"></span>
-				by
+				<span data-ng-bind="campagne.created | date:'dd/MM/yyyy à HH:mm'"></span>
+				-
 				<span data-ng-bind="campagne.user.displayName"></span>
 			</small>
 			<h4 class="list-group-item-heading" data-ng-bind="campagne.name"></h4>
@@ -16,4 +15,7 @@
     <div class="alert alert-warning text-center" data-ng-hide="!campagnes.$resolved || campagnes.length">
     	Aucune campagne en cours, <a href="/#!/campagnes/create">en créer une !</a>
     </div>
+
+    <a href="/#!/campagnes/create" class="btn btn-primary"><i class="fa fa-plus"></i> Nouvelle campagne</a>
+
 </section>

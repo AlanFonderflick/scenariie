@@ -5,12 +5,22 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 	function($scope, $stateParams, $location, Authentication, Campagnes) {
 		$scope.authentication = Authentication;
 
+		$scope.summary = '';
+		$scope.title = '';
+		$scope.newGameSession = {};
+
 		// Create new Campagne
 		$scope.create = function() {
 			// Create new Campagne object
 			var campagne = new Campagnes ({
-				name: this.name
+				name: this.name,
+				description : this.description,
+				gameSessions: []
 			});
+			// campagne.gameSessions.push({
+			// 	title: $scope.title,
+			// 	summary: $scope.summary
+			// });
 
 			// Redirect after save
 			campagne.$save(function(response) {
@@ -42,8 +52,15 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 
 		// Update existing Campagne
 		$scope.update = function() {
-			var campagne = $scope.campagne;
+			$scope.newGameSession = {
+				title: $scope.title,
+				summary: $scope.summary
+			};
 
+			$scope.campagne.gameSessions.push($scope.newGameSession);
+
+			var campagne = $scope.campagne;
+			console.log(campagne);
 			campagne.$update(function() {
 				$location.path('campagnes/' + campagne._id);
 			}, function(errorResponse) {

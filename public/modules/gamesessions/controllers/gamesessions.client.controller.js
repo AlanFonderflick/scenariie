@@ -15,7 +15,7 @@ angular.module('gamesessions').controller('GamesessionsController', ['$scope', '
 
 			// Redirect after save
 			gamesession.$save(function(response) {
-				$location.path('/campagnes/' + response._id);
+				$location.path('gamesessions/' + response._id);
 
 				// Clear form fields
 				$scope.title = '';
@@ -43,15 +43,15 @@ angular.module('gamesessions').controller('GamesessionsController', ['$scope', '
 		};
 
 		// Update existing Gamesession
-		$scope.update = function() {
-			var gamesession = $scope.gamesession;
+		// $scope.update = function() {
+		// 	var gamesession = $scope.gamesession;
 
-			gamesession.$update(function() {
-				$location.path('gamesessions/' + gamesession._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+		// 	gamesession.$update(function() {
+		// 		$location.path('gamesessions/' + gamesession._id);
+		// 	}, function(errorResponse) {
+		// 		$scope.error = errorResponse.data.message;
+		// 	});
+		// };
 
 		// Find a list of Gamesessions
 		$scope.find = function() {
