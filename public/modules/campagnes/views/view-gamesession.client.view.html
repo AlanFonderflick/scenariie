@@ -1,7 +1,7 @@
 <section data-ng-controller="CampagnesController" data-ng-init="findOne()">
 	<nav>
 	  <ul class="pager">
-	    <li class="previous"><a href="/#!/campagnes"><span aria-hidden="true">&larr;</span> Retour aux campagnes</a></li>
+	    <li class="previous"><a href="/#!/campagnes/{{campagne._id}}"><span aria-hidden="true">&larr;</span> Retour à la campagne</a></li>
 	  </ul>
 	</nav>
 
@@ -18,7 +18,7 @@
 		<p data-ng-bind="campagne.description"></p>
 		<small>
 			<em class="text-muted">
-				Campagne créée le
+				Session créée le
 				<span data-ng-bind="campagne.created | date:'dd/MM/yyyy à HH:mm'"></span>
 				par
 				<span data-ng-bind="campagne.user.displayName"></span>

@@ -20,6 +20,15 @@ angular.module('campagnes').config(['$stateProvider',
 		state('editCampagne', {
 			url: '/campagnes/:campagneId/edit',
 			templateUrl: 'modules/campagnes/views/edit-campagne.client.view.html'
+		}).
+		state('createGamesession', {
+			url: '/campagnes/:campagneId/create',
+			templateUrl: 'modules/gamesessions/views/create-gamesession.client.view.html'
+		}).				
+		state('viewSession', {
+			url: '/campagnes/:campagneId/:sessionId',
+			templateUrl: 'modules/campagnes/views/view-gamesession.client.view.html'
 		});
+
 	}
 ]);

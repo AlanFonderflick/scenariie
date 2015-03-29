@@ -1,5 +1,11 @@
 <section data-ng-controller="CampagnesController" data-ng-init="findOne()">
-    <a class="btn btn-primary" href="/#!/campagnes/{{campagne._id}}"><i class="fa fa-chevron-left"></i> Retour aux séances</a>
+
+    <nav>
+      <ul class="pager">
+        <li class="previous"><a href="/#!/campagnes/{{campagne._id}}"><span aria-hidden="true">&larr;</span> Retour aux séances</a></li>
+      </ul>
+    </nav>
+
     <div class="page-header">
         <h1>Créer une séance</h1>
     </div>

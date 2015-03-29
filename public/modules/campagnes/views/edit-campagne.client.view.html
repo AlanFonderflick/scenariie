@@ -1,9 +1,16 @@
 <section data-ng-controller="CampagnesController" data-ng-init="findOne()">
+
+    <nav>
+      <ul class="pager">
+        <li class="previous"><a href="/#!/campagnes/{{campagne._id}}"><span aria-hidden="true">&larr;</span> Retour aux séances</a></li>
+      </ul>
+    </nav>
+
     <div class="page-header">
         <h1>Edit Campagne</h1>
     </div>
     <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="update()" novalidate>
+        <form name="campagneForm" class="form-horizontal" data-ng-submit="update(campagneForm.$valid)" novalidate>
             <fieldset>
                 <div class="form-group">
                     <label class="control-label" for="name">Name</label>

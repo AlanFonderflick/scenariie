@@ -1,8 +1,9 @@
 <section data-ng-controller="CampagnesController" data-ng-init="find()">
     <div class="page-header">
         <h1>Campagnes</h1>
-        <p class="lead">Liste des campagnes en cours.</p>
+        <p class="lead">Liste des campagnes et sessions de jeux plateau en cours.</p>
     </div>
+    <p><a data-ng-href="/#!/campagnes/create" class="btn btn-primary"><i class="fa fa-plus"></i> Nouvelle campagne</a></p>
     <div class="list-group">
         <a data-ng-repeat="campagne in campagnes" data-ng-href="#!/campagnes/{{campagne._id}}" class="list-group-item">
 			<small class="list-group-item-text">
@@ -17,6 +18,6 @@
     	Aucune campagne en cours, <a href="/#!/campagnes/create">en créer une !</a>
     </div>
 
-    <a href="/#!/campagnes/create" class="btn btn-primary"><i class="fa fa-plus"></i> Nouvelle campagne</a>
+    <a data-ng-href="/#!/campagnes/create" class="btn btn-primary" data-ng-show="campagnes.length >= 10"><i class="fa fa-plus"></i> Nouvelle campagne</a>
 
 </section>

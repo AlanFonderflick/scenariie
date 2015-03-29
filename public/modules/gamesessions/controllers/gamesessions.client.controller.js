@@ -10,7 +10,8 @@ angular.module('gamesessions').controller('GamesessionsController', ['$scope', '
 			// Create new Gamesession object
 			var gamesession = new Gamesessions ({
 				title: this.title,
-				summary: this.summary
+				summary: this.summary,
+				slogan: this.slogan
 			});
 
 			// Redirect after save
@@ -20,6 +21,7 @@ angular.module('gamesessions').controller('GamesessionsController', ['$scope', '
 				// Clear form fields
 				$scope.title = '';
 				$scope.summary ='';
+				$scope.slogan = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
