@@ -27,7 +27,7 @@
 	</div>
 
 	<div class="list-group">
-		<a data-ng-repeat="game in campagne.gameSessions" class="list-group-item" data-ng-href="/#!/campagnes/{{campagne._id}}/{{game.id}}">
+		<a data-ng-repeat="game in campagne.gameSessions" class="list-group-item" data-ng-href="/#!/campagnes/{{campagne._id}}/{{game.id}}" data-ng-click="viewSession(game.id)">
 			<small class="pull-right">
 				<em class="text-muted">
 					<span data-ng-bind="game.created | date:'dd/MM/yyyy à HH:mm'"></span>

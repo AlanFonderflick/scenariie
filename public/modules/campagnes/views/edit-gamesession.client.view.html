@@ -1,0 +1,49 @@
+<section data-ng-controller="CampagnesController" data-ng-init="findOne()">
+
+    <nav>
+      <ul class="pager">
+        <li class="previous"><a href="/#!/campagnes/{{campagne._id}}"><span aria-hidden="true">&larr;</span> Retour aux séances</a></li>
+      </ul>
+    </nav>
+
+    <div class="page-header">
+        <h1>Modifier une séance</h1>
+    </div>
+    <div class="col-md-12">
+        <form name="gameSessionForm" class="form-horizontal" data-ng-submit="updateSession(gameSessionForm.$valid)" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="title">Intitulé</label>
+                    <small class="help-block">Le nom de la séance, qui apparaîtra dans la liste.</small>
+                    <div class="controls">
+                        <input type="text" name="title" data-ng-model="title" ng-minlength="3" id="title" class="form-control" placeholder="Intitulé de la séance" required>
+                        <p ng-show="gameSessionForm.title.$invalid && !gameSessionForm.title.$pristine" class="help-block">Veuillez saisir un intitulé de séance.</p>
+                        <p ng-show="gameSessionForm.title.$error.minlength" class="help-block">La longueur de l'intitulé de séance doit être d'au moins 3 caractères.</p>
+                    </div>
+                </div> 
+                <div class="form-group">   
+                    <label class="control-label" for="slogan">Accroche</label>
+                    <small class="help-block">Une description courte, qui apparaîtra dans la liste.</small>
+                    <div class="controls">
+                        <input type="text" name="slogan" data-ng-model="slogan" ng-minlength="3" id="slogan" class="form-control" placeholder="Une phrase accrocheuse de description" required>
+                        <p ng-show="gameSessionForm.slogan.$invalid && !gameSessionForm.slogan.$pristine" class="help-block">Veuillez saisir une accroche.</p>
+                        <p ng-show="gameSessionForm.slogan.$error.minlength" class="help-block">La longueur de l'accroche doit être d'au moins 3 caractères.</p>
+                    </div>   
+                </div> 
+                <div class="form-group">                     
+                    <label class="control-label" for="summary">Résumé</label>
+                    <small class="help-block">Le corps de texte de la séance, pour informer vos joueurs.</small>
+                    <div class="controls">
+                        <wysiwyg textarea-id="question" textarea-class="form-control"  textarea-height="280px" textarea-name="textareaQuestion" textarea-required ng-model="summary" enable-bootstrap-title="true"></wysiwyg>
+                    </div>                    
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" ng-disabled="gameSessionForm.$invalid">
+                </div>
+                <div data-ng-show="error" class="text-danger ">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>

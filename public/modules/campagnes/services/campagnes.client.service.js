@@ -10,4 +10,22 @@ angular.module('campagnes').factory('Campagnes', ['$resource',
 			}
 		});
 	}
+])
+
+.factory('Game', [
+	function() {
+		// Gamesession service logic
+		// ...
+		var session = 0;
+
+		// Public API
+		return {
+			getSession: function() {
+				return session;
+			},
+			setSession: function(id) {
+				session = id;
+			}
+		};
+	}
 ]);

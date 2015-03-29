@@ -28,7 +28,11 @@ angular.module('campagnes').config(['$stateProvider',
 		state('viewSession', {
 			url: '/campagnes/:campagneId/:sessionId',
 			templateUrl: 'modules/campagnes/views/view-gamesession.client.view.html'
-		});
+		}).
+		state('editSession', {
+			url: '/campagnes/:campagneId/:sessionId/edit',
+			templateUrl: 'modules/campagnes/views/edit-gamesession.client.view.html'
+		});		
 
 	}
 ]);

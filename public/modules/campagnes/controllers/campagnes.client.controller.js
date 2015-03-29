@@ -1,15 +1,15 @@
 'use strict';
 
 // Campagnes controller
-angular.module('campagnes').controller('CampagnesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Campagnes', 'Gamesessions',
-	function($scope, $stateParams, $location, Authentication, Campagnes, Gamesessions) {
+angular.module('campagnes').controller('CampagnesController', ['$scope', '$stateParams', '$location', '$sce', 'Authentication', 'Campagnes', 'Gamesessions', 'Game',
+	function($scope, $stateParams, $location, $sce, Authentication, Campagnes, Gamesessions, Game) {
 		$scope.authentication = Authentication;
 
 		$scope.slogan = '';
 		$scope.summary = '';
 		$scope.title = '';
 		$scope.newGameSession = null;
-		$scope.session = {};
+		$scope.session = Game.getSession();
 
 		// Create new Campagne
 		$scope.create = function() {
@@ -80,6 +80,62 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 			}
 		};
 
+		$scope.viewSession = function(id) {
+			Game.setSession(id);
+
+			console.log('$scope.session : '+$scope.session);
+		};
+
+		// Update Campagne without a particular session
+		$scope.removeSession = function(campagne) {
+			var campagne = $scope.campagne;
+			campagne.gameSessions.splice($scope.session,1);
+			var game = {};
+			console.log(campagne.gameSessions.length);
+
+			//Decrement higher sessions IDs to respect sessions order
+			for(var i=0; i<campagne.gameSessions.length; i++)
+			{
+				if(campagne.gameSessions[i].id > $scope.session){
+					campagne.gameSessions[i].id--;
+				}				
+			}
+
+			campagne.$update(function() {
+					$location.path('campagnes/' + campagne._id);
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Update existing Campagne
+		$scope.updateSession = function(isValid) {
+			$scope.newGameSession = {
+				title: this.title,
+				summary: this.summary,
+				slogan: this.slogan,
+				created: new Date(),
+				id: this.session
+			};
+
+			console.dir($scope.newGameSession);
+
+			//Check if we have to update a session or just campaign fields
+			if($scope.newGameSession){
+				$scope.campagne.gameSessions[$scope.session] = $scope.newGameSession;
+			}
+
+			var campagne = $scope.campagne;
+
+			if(isValid){
+				campagne.$update(function() {
+					$location.path('campagnes/' + campagne._id);
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+			}
+		};
+
 		// Find a list of Campagnes
 		$scope.find = function() {
 			$scope.campagnes = Campagnes.query();
@@ -104,6 +160,10 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 		// 	console.log('--findOneSession--');
 		// 	console.dir($scope.session);
 		// };		
+
+		$scope.trustedHtml = function (plainText) {
+            return $sce.trustAsHtml(plainText);
+        }
 
 	}
 ]);
