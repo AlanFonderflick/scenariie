@@ -3,7 +3,7 @@
 module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
 	var campagnes = require('../../app/controllers/campagnes.server.controller');
-	var gameSessions = require('../../app/controllers/gameSessions.server.controller');
+	var gameSessions = require('../../app/controllers/gamesessions.server.controller');
 
 	// Campagnes Routes
 	app.route('/campagnes')
