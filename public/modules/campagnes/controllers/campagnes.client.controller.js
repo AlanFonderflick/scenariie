@@ -88,7 +88,7 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 
 		// Update Campagne without a particular session
 		$scope.removeSession = function(campagne) {
-			var campagne = $scope.campagne;
+			campagne = $scope.campagne;
 			campagne.gameSessions.splice($scope.session,1);
 			var game = {};
 			console.log(campagne.gameSessions.length);
@@ -163,7 +163,7 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 
 		$scope.trustedHtml = function (plainText) {
             return $sce.trustAsHtml(plainText);
-        }
+        };
 
 	}
 ]);

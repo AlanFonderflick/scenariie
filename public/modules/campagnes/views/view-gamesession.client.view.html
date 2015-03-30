@@ -34,16 +34,5 @@
 		<p ng-bind-html="trustedHtml(campagne.gameSessions[session].summary)"></p>
 		</div>
 	</div>
-	
-
-	<div data-ng-show="((authentication.user) && (authentication.user._id == campagne.user._id))">
-	    <div class="alert alert-warning text-center" data-ng-hide="campagne.gameSessions.length">
-	    	Aucune séance programmée, <a href="/#!/campagnes/{{campagne._id}}/create">en créer une !</a>
-	    </div>
-	    <a href="/#!/campagnes/{{campagne._id}}/create" class="btn btn-primary"><i class="fa fa-plus"></i> Nouvelle séance</a>
-	</div>
-	<div class="alert alert-warning text-center" data-ng-show="((authentication.user) && (authentication.user._id != campagne.user._id)) && (campagne.gameSessions.length === 0)">
-		<p>L'auteur de cette campagne n'a pas encore créé de séance.</p>
-	</div>
 
 </section>
