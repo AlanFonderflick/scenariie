@@ -29,7 +29,7 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-wysiwyg/angular-wysiwyg.js',																			
-				'public/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js',																			
+				'public/lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js'																			
 			]
 		},
 		css: [
