@@ -8,6 +8,8 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 		$scope.slogan = '';
 		$scope.summary = '';
 		$scope.title = '';
+		$scope.created = null;
+		$scope.id = '';
 		$scope.newGameSession = null;
 		$scope.session = Game.getSession();
 
@@ -110,6 +112,13 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 
 		// Update existing Campagne
 		$scope.updateSession = function(isValid) {
+			$scope.title = $scope.campagne.gameSessions[$scope.session].title;
+			$scope.slogan = $scope.campagne.gameSessions[$scope.session].slogan;
+			$scope.summary = $scope.campagne.gameSessions[$scope.session].summary;
+			$scope.created = $scope.campagne.gameSessions[$scope.session].created;
+			$scope.id = $scope.campagne.gameSessions[$scope.session].id;
+
+
 			$scope.newGameSession = {
 				title: this.title,
 				summary: this.summary,
@@ -118,12 +127,9 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 				id: this.session
 			};
 
-			console.dir($scope.newGameSession);
+			console.dir(this);
 
-			//Check if we have to update a session or just campaign fields
-			if($scope.newGameSession){
-				$scope.campagne.gameSessions[$scope.session] = $scope.newGameSession;
-			}
+			$scope.campagne.gameSessions[$scope.session] = $scope.newGameSession;
 
 			var campagne = $scope.campagne;
 
@@ -139,8 +145,6 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 		// Find a list of Campagnes
 		$scope.find = function() {
 			$scope.campagnes = Campagnes.query();
-			console.log('--find--');
-			console.dir($scope.campagne);
 		};
 
 		// Find existing Campagne
@@ -148,9 +152,8 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 			$scope.campagne = Campagnes.get({ 
 				campagneId: $stateParams.campagneId
 			});
-			console.log('--findOne--');
-			console.dir($scope.campagne);
 		};
+
 		// Find existing Session
 		// $scope.findOneSession = function() {
 		// 	$scope.session = Campagnes.get({ 
