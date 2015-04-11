@@ -1,8 +1,8 @@
 'use strict';
 
 // Campagnes controller
-angular.module('campagnes').controller('CampagnesController', ['$scope', '$stateParams', '$location', '$sce', 'Authentication', 'Campagnes', 'Gamesessions', 'Game',
-	function($scope, $stateParams, $location, $sce, Authentication, Campagnes, Gamesessions, Game) {
+angular.module('campagnes').controller('CampagnesController', ['$scope', '$stateParams', '$location', '$sce', 'Authentication', 'Campagnes', 'Gamesessions', 'Game', 'Users',
+	function($scope, $stateParams, $location, $sce, Authentication, Campagnes, Gamesessions, Game, Users) {
 		$scope.authentication = Authentication;
 
 		$scope.slogan = '';
@@ -19,12 +19,9 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 			var campagne = new Campagnes ({
 				name: this.name,
 				description : this.description,
-				gameSessions: []
+				gameSessions: [],
+				players: []
 			});
-			// campagne.gameSessions.push({
-			// 	title: $scope.title,
-			// 	summary: $scope.summary
-			// });
 
 			// Redirect after save
 			campagne.$save(function(response) {
@@ -142,6 +139,18 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 			}
 		};
 
+		// Update existing Campagne
+		$scope.updatePlayers = function() {
+			var campagne = $scope.campagne;
+			console.dir(this);
+
+			campagne.$update(function() {
+				$location.path('campagnes/' + campagne._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};		
+
 		// Find a list of Campagnes
 		$scope.find = function() {
 			$scope.campagnes = Campagnes.query();
@@ -152,21 +161,30 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 			$scope.campagne = Campagnes.get({ 
 				campagneId: $stateParams.campagneId
 			});
-		};
-
-		// Find existing Session
-		// $scope.findOneSession = function() {
-		// 	$scope.session = Campagnes.get({ 
-		// 		campagneId: $stateParams.campagneId,
-		// 		sessionId: $stateParams.sessionId
-		// 	});
-		// 	console.log('--findOneSession--');
-		// 	console.dir($scope.session);
-		// };		
+		};	
 
 		$scope.trustedHtml = function (plainText) {
             return $sce.trustAsHtml(plainText);
         };
 
+        $scope.campaignSubscription = function () {
+
+        	var isUsed = false ;
+        	//Verify that we only put a user *once* in players list
+        	for(var i=0; i<$scope.campagne.players.length; i++)
+			{
+				//Double check : first for players object populated by mongoose, and second for simple String (first player subscription)
+				if($scope.campagne.players[i]._id === $scope.authentication.user._id ||
+				$scope.campagne.players[i] === $scope.authentication.user._id){
+					isUsed = true;
+				}				
+			}
+
+			if(!isUsed) {
+				$scope.campagne.players.push($scope.authentication.user._id);
+	        	$scope.updatePlayers();
+			}
+
+        };
 	}
 ]);

@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Campagnes
  */
 exports.list = function(req, res) { 
-	Campagne.find({}).sort('-created').populate('user', 'displayName').populate('gameSessions._id').exec(function(err, campagnes) {
+	Campagne.find({}).sort('-created').populate('user', 'displayName').populate('players', 'displayName').populate('gameSessions._id').exec(function(err, campagnes) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,19 +88,10 @@ exports.list = function(req, res) {
  * Campagne middleware
  */
 exports.campagneByID = function(req, res, next, id) { 
-	Campagne.findById(id).populate('user', 'displayName').populate('gameSessions._id').exec(function(err, campagne) {
+	Campagne.findById(id).populate('user', 'displayName').populate('players', 'displayName').populate('gameSessions._id').exec(function(err, campagne) {
 		if (err) return next(err);
 		if (! campagne) return next(new Error('Failed to load Campagne ' + id));
-		req.campagne = campagne ;
-		console.log('\n\n\n\n\n\nsessionById id : '+id);		
-		next();
-	});
-};
-exports.sessionByID = function(req, res, next, id) { 
-	Campagne.findById(id).populate('user', 'displayName').populate('gameSessions.id').where('id').equals(id).exec(function(err, campagne) {
-		if (err) return next(err);
-		if (! campagne) return next(new Error('Failed to load Campagne ' + id));
-		req.campagne = campagne ;
+		req.campagne = campagne ;		
 		next();
 	});
 };

@@ -5,6 +5,7 @@
  */
 var _ = require('lodash'),
 	mongoose = require('mongoose'),
+	errorHandler = require('../errors.server.controller'),
 	User = mongoose.model('User');
 
 /**
@@ -20,6 +21,22 @@ exports.userByID = function(req, res, next, id) {
 		next();
 	});
 };
+
+/**
+ * List of Users
+ */
+exports.list = function(req, res) { 
+	User.find().exec(function(err, users) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(users);
+		}
+	});
+};
+
 
 /**
  * Require login routing middleware
