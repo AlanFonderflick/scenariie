@@ -34,6 +34,10 @@ var CampagneSchema = new Schema({
 	players: [{
 		type: Schema.ObjectId,
 		ref: 'User'
+	}],
+	applicants : [{
+		type: Schema.ObjectId,
+		ref: 'User'
 	}]
 });
 
