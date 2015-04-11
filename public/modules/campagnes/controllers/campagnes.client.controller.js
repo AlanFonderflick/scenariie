@@ -61,8 +61,6 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 				id: $scope.campagne.gameSessions.length
 			};
 
-			console.dir($scope.campagne);
-
 			//Check if we have to update a session or just campaign fields
 			if($scope.newGameSession){
 				$scope.campagne.gameSessions.push($scope.newGameSession);
@@ -81,8 +79,6 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 
 		$scope.viewSession = function(id) {
 			Game.setSession(id);
-
-			console.log('$scope.session : '+$scope.session);
 		};
 
 		// Update Campagne without a particular session
@@ -90,7 +86,6 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 			campagne = $scope.campagne;
 			campagne.gameSessions.splice($scope.session,1);
 			var game = {};
-			console.log(campagne.gameSessions.length);
 
 			//Decrement higher sessions IDs to respect sessions order
 			for(var i=0; i<campagne.gameSessions.length; i++)
@@ -124,8 +119,6 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 				id: this.session
 			};
 
-			console.dir(this);
-
 			$scope.campagne.gameSessions[$scope.session] = $scope.newGameSession;
 
 			var campagne = $scope.campagne;
@@ -142,7 +135,6 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 		// Update existing Campagne
 		$scope.updatePlayers = function() {
 			var campagne = $scope.campagne;
-			console.dir(this);
 
 			campagne.$update(function() {
 				$location.path('campagnes/' + campagne._id);

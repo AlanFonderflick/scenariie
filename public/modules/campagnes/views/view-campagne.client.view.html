@@ -61,10 +61,10 @@
 		</div>
 
 		<!-- Liste des participants -->
-		<div class="list-group col-sm-3">
+		<div class="col-sm-3">
 			<h4>Liste des participants</h4>
-			<div data-ng-repeat="player in campagne.players">
-				<a href="#" class="list-group-item" data-ng-bind="player.displayName"></a>
+			<div data-ng-repeat="player in campagne.players" class="list-group">
+				<a href="/#!" class="list-group-item" data-ng-bind="player.displayName"></a>
 			</div>
 			<button class="btn btn-primary" data-ng-click="campaignSubscription()">S'inscrire</button>	
 		</div>
