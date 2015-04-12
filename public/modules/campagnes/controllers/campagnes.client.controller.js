@@ -23,6 +23,8 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 				players: []
 			});
 
+			campagne.players.push($scope.authentication.user._id);
+
 			// Redirect after save
 			campagne.$save(function(response) {
 				$location.path('campagnes/' + response._id);
