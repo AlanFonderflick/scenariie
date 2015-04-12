@@ -17,6 +17,10 @@ angular.module('campagnes').config(['$stateProvider',
 			url: '/campagnes/:campagneId',
 			templateUrl: 'modules/campagnes/views/view-campagne.client.view.html'
 		}).
+		state('CampagnePlayers', {
+			url: '/players/:campagneId',
+			templateUrl: 'modules/campagnes/views/view-campagne.client.view.html'
+		}).		
 		state('editCampagne', {
 			url: '/campagnes/:campagneId/edit',
 			templateUrl: 'modules/campagnes/views/edit-campagne.client.view.html'

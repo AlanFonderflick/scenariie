@@ -160,7 +160,6 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
         };
 
         $scope.campaignSubscription = function () {
-
         	var isUsed = false ;
         	//Verify that we only put a user *once* in players list
         	for(var i=0; i<$scope.campagne.players.length; i++)
@@ -171,12 +170,12 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 					isUsed = true;
 				}				
 			}
-
 			if(!isUsed) {
 				$scope.campagne.players.push($scope.authentication.user._id);
 	        	$scope.updatePlayers();
 			}
+       };
 
-        };
+
 	}
 ]);

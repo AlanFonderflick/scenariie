@@ -52,6 +52,21 @@ exports.update = function(req, res) {
 	});
 };
 
+exports.partialUpdate = function(req, res) {
+	var campagne = req.campagne ;
+	campagne = _.extend(campagne , req.body);
+
+	campagne.update({players: campagne.players}, function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(campagne);
+		}
+	});
+};
+
 /**
  * Delete an Campagne
  */
@@ -105,3 +120,16 @@ exports.hasAuthorization = function(req, res, next) {
 	}
 	next();
 };
+
+/**
+ * Campagne authorization middleware
+ */
+exports.hasPartialAuthorization = function(req, res, next) {
+	if (req.campagne.user.id !== req.user.id) {
+		exports.partialUpdate(req,res);
+	}
+	else {
+		next();
+	}
+};
+

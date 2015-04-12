@@ -12,7 +12,7 @@ module.exports = function(app) {
 
 	app.route('/campagnes/:campagneId')
 		.get(campagnes.read)
-		.put(users.requiresLogin, campagnes.hasAuthorization, campagnes.update)
+		.put(users.requiresLogin, campagnes.hasPartialAuthorization, campagnes.update)
 		//.post(users.requiresLogin, gameSessions.create)
 		.delete(users.requiresLogin, campagnes.hasAuthorization, campagnes.delete);
 
