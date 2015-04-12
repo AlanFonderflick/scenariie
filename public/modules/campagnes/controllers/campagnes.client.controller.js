@@ -161,7 +161,27 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
             return $sce.trustAsHtml(plainText);
         };
 
+		$scope.isSubscribed = function () {
+			var res = false;
+			for(var i=0; i<$scope.campagne.players.length; i++)
+			{
+				//Double check : first for players object populated by mongoose, and second for simple String (first player subscription)
+				if($scope.campagne.players[i]._id === $scope.authentication.user._id ||
+				$scope.campagne.players[i] === $scope.authentication.user._id){
+					res = true;
+				}				
+			}
+			return res;
+		};
+
         $scope.campaignSubscription = function () {
+			if(!$scope.isSubscribed()) {
+				$scope.campagne.players.push($scope.authentication.user._id);
+	        	$scope.updatePlayers();
+			}
+       };
+
+        $scope.campaignUnsubscription = function () {
         	var isUsed = false ;
         	//Verify that we only put a user *once* in players list
         	for(var i=0; i<$scope.campagne.players.length; i++)
@@ -176,7 +196,7 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 				$scope.campagne.players.push($scope.authentication.user._id);
 	        	$scope.updatePlayers();
 			}
-       };
+       };       
 
 
 	}
