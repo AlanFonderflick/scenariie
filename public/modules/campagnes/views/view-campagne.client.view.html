@@ -67,7 +67,7 @@
 			<div class="list-group">
 				<a data-ng-repeat="player in campagne.players" class="list-group-item" data-ng-bind="player.displayName"></a>
 			</div>
-			<div class="alert alert-warning text-center top-buffer" data-ng-show="campagne.gameSessions.length === 0">
+			<div class="alert alert-warning text-center top-buffer" data-ng-show="campagne.players.length === 0">
 				<p>Il n'y a encore aucun participant à cette campagne.</p>
 			</div>
 			<div data-ng-show="authentication.user">
