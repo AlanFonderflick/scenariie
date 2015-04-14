@@ -56,7 +56,7 @@ exports.partialUpdate = function(req, res) {
 	var campagne = req.campagne ;
 	campagne = _.extend(campagne , req.body);
 
-	campagne.update({players: campagne.players}, function(err) {
+	Campagne.update({_id: campagne._id},{players: campagne.players}, function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -125,8 +125,9 @@ exports.hasAuthorization = function(req, res, next) {
  * Campagne authorization middleware
  */
 exports.hasPartialAuthorization = function(req, res, next) {
-	if (req.campagne.user.id !== req.user.id) {
+	if (req.campagne.user._id !== req.user._id) {
 		exports.partialUpdate(req,res);
+		console.log('\n\n\nPartial update\n\n\n');
 	}
 	else {
 		next();

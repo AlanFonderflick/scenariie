@@ -24,7 +24,7 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 				players: [],
 				playersConfirmations: [],
 				applicants: [],
-				nextDate : {}
+				nextDate : null
 			});
 
 			campagne.players.push($scope.authentication.user._id);

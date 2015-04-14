@@ -24,3 +24,7 @@ h4 {
 
 .new {color:#0462d5;}
 .badge.new {background:#0462d5; color:#fff;}
+
+.alert h4 {
+	margin-bottom: 0px;
+}

@@ -38,6 +38,16 @@
 	<!-- Liste des séances -->
 	<div class="row top-buffer">
 		<div class="list-group col-sm-9">
+			<!-- Séance à venir -->
+			<div class="alert alert-info">
+				<h4>
+					<i class="fa fa-clock-o fa-lg"></i> 
+					<span data-ng-show="nextDate">Prochaine séance </span>
+					<span data-ng-bind="campagne.nextDate | date:'dd/MM/yyyy HH:mm'"></span>
+					<span data-ng-show="!nextDate">Date de la prochaine séance indéterminée</span>
+				</h4>
+			</div>
+			<!-- Anciennes séances -->
 			<a data-ng-repeat="game in campagne.gameSessions" class="list-group-item gameSessions" data-ng-href="/#!/campagnes/{{campagne._id}}/{{game.id}}" data-ng-click="viewSession(game.id)">
 				<small class="pull-right">
 					<em class="text-muted">
