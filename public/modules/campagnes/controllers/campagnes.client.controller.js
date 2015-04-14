@@ -140,6 +140,7 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 
 			campagne.$update(function() {
 				$location.path('campagnes/' + campagne._id);
+				$scope.findOne();
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -162,12 +163,13 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
         };
 
 		$scope.isSubscribed = function () {
+			var campagne = $scope.campagne;
 			var res = false;
-			for(var i=0; i<$scope.campagne.players.length; i++)
+			for(var i=0; i<campagne.players.length; i++)
 			{
 				//Double check : first for players object populated by mongoose, and second for simple String (first player subscription)
-				if($scope.campagne.players[i]._id === $scope.authentication.user._id ||
-				$scope.campagne.players[i] === $scope.authentication.user._id){
+				if(campagne.players[i]._id === $scope.authentication.user._id ||
+				campagne.players[i] === $scope.authentication.user._id){
 					res = true;
 				}				
 			}
@@ -182,18 +184,18 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
        };
 
         $scope.campaignUnsubscription = function () {
-        	var isUsed = false ;
-        	//Verify that we only put a user *once* in players list
-        	for(var i=0; i<$scope.campagne.players.length; i++)
-			{
-				//Double check : first for players object populated by mongoose, and second for simple String (first player subscription)
-				if($scope.campagne.players[i]._id === $scope.authentication.user._id ||
-				$scope.campagne.players[i] === $scope.authentication.user._id){
-					isUsed = true;
-				}				
-			}
-			if(!isUsed) {
-				$scope.campagne.players.push($scope.authentication.user._id);
+			if($scope.isSubscribed()) {
+				var index = -1;
+				for(var i=0; i<$scope.campagne.players.length; i++){
+					if($scope.campagne.players[i]._id === $scope.authentication.user._id ||
+					$scope.campagne.players[i] === $scope.authentication.user._id)
+					{
+						index = i;
+					}
+				}
+				if(index !== -1){
+					$scope.campagne.players.splice(index,1);
+				}
 	        	$scope.updatePlayers();
 			}
        };       
