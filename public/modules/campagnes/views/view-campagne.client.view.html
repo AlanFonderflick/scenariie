@@ -38,14 +38,15 @@
 	<!-- Liste des séances -->
 	<div class="row top-buffer">
 		<div class="list-group col-sm-9">
-			<a data-ng-repeat="game in campagne.gameSessions" class="list-group-item" data-ng-href="/#!/campagnes/{{campagne._id}}/{{game.id}}" data-ng-click="viewSession(game.id)">
+			<a data-ng-repeat="game in campagne.gameSessions" class="list-group-item gameSessions" data-ng-href="/#!/campagnes/{{campagne._id}}/{{game.id}}" data-ng-click="viewSession(game.id)">
 				<small class="pull-right">
 					<em class="text-muted">
 						<span data-ng-bind="game.created | date:'dd/MM/yyyy à HH:mm'"></span>
 					</em>
 				</small>
-				<span class="lead">Séance {{game.id +1}}</span><h4 class="list-group-item-heading" data-ng-bind="game.title"></h4>
-				<p class="list-group-item-text" data-ng-bind="game.slogan"></p>
+				<div class="label label-default">Séance {{game.id +1}}</div>
+				<h4 class="list-group-item-heading" data-ng-bind="game.title"></h4>
+				<p class="list-group-item-text"><i class="fa fa-angle-double-left"></i> <em class="list-group-item-text" data-ng-bind="game.slogan"></em> <i class="fa fa-angle-double-right"></i></p>
 			</a>
 
 			<!-- Boutons d'ajout -->
