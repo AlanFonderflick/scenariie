@@ -39,6 +39,10 @@ var CampagneSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	}],
+	playersConfirmations : [{
+		type: Schema.ObjectId,
+		ref: 'User'
+	}],	
 	nextDate : {
 		type: Date
 	},

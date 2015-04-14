@@ -21,7 +21,10 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 				description : this.description,
 				gameType: this.gameType,
 				gameSessions: [],
-				players: []
+				players: [],
+				playersConfirmations: [],
+				applicants: [],
+				nextDate : {}
 			});
 
 			campagne.players.push($scope.authentication.user._id);
