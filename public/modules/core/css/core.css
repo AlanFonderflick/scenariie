@@ -21,3 +21,6 @@ h4 {
 	font-size: 1.6em;
 }
 .gameSessions h4.list-group-item-heading {margin-top: 8px !important;}
+
+.new {color:#0462d5;}
+.badge.new {background:#0462d5; color:#fff;}

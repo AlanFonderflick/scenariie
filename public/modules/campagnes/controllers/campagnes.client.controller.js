@@ -140,7 +140,9 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 
 			campagne.$update(function() {
 				$location.path('campagnes/' + campagne._id);
+				//Reload campagne data (/!\ entirely, to change)
 				$scope.findOne();
+				$scope.subscription = !$scope.subscription;
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -165,6 +167,7 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 		$scope.isSubscribed = function () {
 			var campagne = $scope.campagne;
 			var res = false;
+
 			for(var i=0; i<campagne.players.length; i++)
 			{
 				//Double check : first for players object populated by mongoose, and second for simple String (first player subscription)
