@@ -19,6 +19,7 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 			var campagne = new Campagnes ({
 				name: this.name,
 				description : this.description,
+				gameType: this.gameType,
 				gameSessions: [],
 				players: []
 			});

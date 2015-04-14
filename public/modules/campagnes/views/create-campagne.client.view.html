@@ -24,7 +24,16 @@
                         <input type="text" data-ng-model="description" name="description" ng-minlength="3" id="description" class="form-control" placeholder="Description">
                         <p ng-show="campagneForm.description.$invalid && !campagneForm.description.$pristine" class="help-block">Veuillez saisir un intitulé de séance.</p>
                         <p ng-show="campagneForm.description.$error.minlength" class="help-block">La longueur de l'intitulé de séance doit être d'au moins 3 caractères.</p>                        
-                    </div>                    
+                    </div> 
+                    <div class="controls">
+                        <label class="control-label" for="gameType">Type de jeu</label>
+                        <select class="form-control" data-ng-model="gameType" name="gameType" id="gameType">
+                          <option value="rpg" selected="selected">Jeu de rôle</option>
+                          <option value="videoGame">Jeu vidéo</option>
+                          <option value="cards">Jeu de cartes</option>
+                          <option value="game">Autre jeu</option>
+                        </select>                       
+                    </div>                                        
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-default" ng-disabled="campagneForm.$invalid">

@@ -38,7 +38,23 @@ var CampagneSchema = new Schema({
 	applicants : [{
 		type: Schema.ObjectId,
 		ref: 'User'
-	}]
+	}],
+	nextDate : {
+		type: Date
+	},
+	state : {
+		type: String,
+		enum: ['closed', 'open'],
+		default: 'open'
+	},
+	gameType : {
+		type : String,
+		enum: ['rpg', 'videoGame', 'cards', 'game']
+	},
+	isPrivate : {
+		type: Boolean,
+		default: false
+	}
 });
 
 mongoose.model('Campagne', CampagneSchema);
