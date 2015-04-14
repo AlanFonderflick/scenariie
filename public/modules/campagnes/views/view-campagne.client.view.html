@@ -67,8 +67,13 @@
 			<div class="list-group">
 				<a data-ng-repeat="player in campagne.players" class="list-group-item" data-ng-bind="player.displayName"></a>
 			</div>
-			<button class="btn btn-primary" data-ng-click="campaignSubscription()">S'inscrire</button>	
-			<button class="btn btn-primary" data-ng-click="campaignUnsubscription()">Se désinscrire</button>	
+			<div class="alert alert-warning text-center top-buffer" data-ng-show="campagne.gameSessions.length === 0">
+				<p>Il n'y a encore aucun participant à cette campagne.</p>
+			</div>
+			<div data-ng-show="authentication.user">
+				<button class="btn btn-primary" data-ng-click="campaignSubscription()">S'inscrire</button>	
+				<button class="btn btn-primary" data-ng-click="campaignUnsubscription()">Se désinscrire</button>
+			</div>	
 		</div>
 	</div>
 
