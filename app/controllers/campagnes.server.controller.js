@@ -128,9 +128,6 @@ exports.hasPartialAuthorization = function(req, res, next) {
 	if (req.campagne.user.id.toString() !== req.user.id.toString()) {
 		exports.partialUpdate(req,res);
 		console.log('\n\n\nPartial update\n\n\n');
-		console.log(req.campagne.user.id.toString());
-		console.log(req.user.id.toString());
-		console.log(req.campagne.user._id.toString()===req.user._id.toString());
 	}
 	else {
 		next();
