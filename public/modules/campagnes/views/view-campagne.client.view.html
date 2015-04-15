@@ -42,8 +42,10 @@
 			<div class="alert alert-info">
 				<h4>
 					<i class="fa fa-clock-o fa-lg"></i> 
-					<span data-ng-show="nextDate">Prochaine séance </span>
-					<span data-ng-bind="campagne.nextDate | date:'dd/MM/yyyy HH:mm'"></span>
+					<div data-ng-show="nextDate">
+						<span>Prochaine séance </span>
+						<span data-ng-bind="campagne.nextDate | date:'dd/MM/yyyy HH:mm'"></span>
+					</div>
 					<span data-ng-show="!nextDate">Date de la prochaine séance indéterminée</span>
 				</h4>
 			</div>
