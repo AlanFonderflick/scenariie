@@ -5,12 +5,12 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 	function($scope, $stateParams, $location, $sce, Authentication, Campagnes, Gamesessions, Game, Users) {
 		$scope.authentication = Authentication;
 
-		$scope.slogan = '';
-		$scope.summary = '';
-		$scope.title = '';
-		$scope.created = null;
-		$scope.id = '';
-		$scope.newGameSession = null;
+		// $scope.slogan = '';
+		// $scope.summary = '';
+		// $scope.title = '';
+		// $scope.created = null;
+		// $scope.id = '';
+		// $scope.newGameSession = null;
 		$scope.session = Game.getSession();
 
 		// Create new Campagne
@@ -68,7 +68,7 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 			};
 
 			//Check if we have to update a session or just campaign fields
-			if($scope.newGameSession){
+			if($scope.newGameSession.title){
 				$scope.campagne.gameSessions.push($scope.newGameSession);
 			}
 
@@ -205,8 +205,23 @@ angular.module('campagnes').controller('CampagnesController', ['$scope', '$state
 				}
 	        	$scope.updatePlayers();
 			}
-       };       
+       };    
 
+       $scope.open = function($event) {
+	    $event.preventDefault();
+	    $event.stopPropagation();
+
+	    $scope.opened = true;
+	  };
+
+	  $scope.dateOptions = {
+	    formatYear: 'yy',
+	    startingDay: 1
+	  };   
+	  $scope.dateOptions = {
+		    formatYear: 'yy',
+		    startingDay: 1
+	  };
 
 	}
 ]);

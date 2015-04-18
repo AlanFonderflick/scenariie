@@ -41,14 +41,22 @@
 
 			<!-- Séance à venir -->
 			<div class="alert alert-info">
+				<button class="btn btn-primary btn-sm pull-right" data-ng-click="editDate=!editDate"><i class="glyphicon glyphicon-time"></i> Horaire</button>
+				<button class="btn btn-primary btn-sm pull-right" data-ng-click="open($event)" data-ng-change="update(true)" datepicker-popup="dd/MM/yyyy" ng-model="campagne.nextDate" is-open="opened" datepicker-options="dateOptions" close-text="Fermer" current-text="Aujourd'hui" clear-text="Effacer"><i class="glyphicon glyphicon-calendar"></i> Date</button>
+
 				<h4>
 					<i class="fa fa-clock-o fa-lg"></i> 
-					<div data-ng-show="nextDate.getTime()">
-						<span>Prochaine séance </span>
-						<span data-ng-bind="campagne.nextDate.getTime() | date:'dd/MM/yyyy HH:mm'"></span>
-					</div>
-					<span data-ng-show="!nextDate">Date de la prochaine séance indéterminée</span>
+					<span data-ng-show="campagne.nextDate">
+						<span>Prochaine séance le </span>
+						<span data-ng-bind="campagne.nextDate | date:'dd/MM/yyyy à HH:mm'"></span>
+					</span>
+					<span data-ng-show="!campagne.nextDate">Date de la prochaine séance indéterminée</span>
 				</h4>
+
+				<div data-ng-show="editDate">
+				<timepicker data-ng-model="campagne.nextDate" minute-step="15" show-meridian="false"></timepicker>
+				<button class="btn btn-success btn-sm" data-ng-click="editDate=!editDate; update(true)"><i class="glyphicon glyphicon-ok"></i> Valider</button>		
+				</div>
 			</div>
 
 			<!-- Anciennes séances -->
@@ -70,7 +78,7 @@
 			    </div>
 			    <a href="/#!/campagnes/{{campagne._id}}/create" class="btn btn-primary"><i class="fa fa-plus"></i> Nouvelle séance</a>
 			</div>
-			<div class="alert alert-warning text-center top-buffer" data-ng-show="((authentication.user) && (authentication.user._id != campagne.user._id)) && (campagne.gameSessions.length === 0)">
+			<div class="alert alert-warning text-center top-buffer" data-ng-show="((authentication.user._id != campagne.user._id) && (campagne.gameSessions.length === 0))">
 				<p>L'auteur de cette campagne n'a pas encore créé de séance.</p>
 			</div>
 		</div>
