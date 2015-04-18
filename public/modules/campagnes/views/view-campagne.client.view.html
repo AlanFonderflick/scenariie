@@ -41,9 +41,10 @@
 
 			<!-- Séance à venir -->
 			<div class="alert alert-info">
-				<button class="btn btn-primary btn-sm pull-right left-buffer" data-ng-click="editDate=!editDate"><i class="glyphicon glyphicon-time"></i> Horaire</button>
-				<button class="btn btn-primary btn-sm pull-right" data-ng-click="open($event)" data-ng-change="update(true)" datepicker-popup="dd/MM/yyyy" ng-model="campagne.nextDate" is-open="opened" datepicker-options="dateOptions" close-text="Fermer" current-text="Aujourd'hui" clear-text="Effacer"><i class="glyphicon glyphicon-calendar"></i> Date</button>
-
+				<div data-ng-show="((authentication.user) && (authentication.user._id == campagne.user._id))">
+					<button class="btn btn-primary btn-sm pull-right left-buffer" data-ng-click="editDate=!editDate"><i class="glyphicon glyphicon-time"></i> Horaire</button>
+					<button class="btn btn-primary btn-sm pull-right" data-ng-click="open($event)" data-ng-change="update(true)" datepicker-popup="dd/MM/yyyy" ng-model="campagne.nextDate" is-open="opened" datepicker-options="dateOptions" close-text="Fermer" current-text="Aujourd'hui" clear-text="Effacer"><i class="glyphicon glyphicon-calendar"></i> Date</button>
+				</div>
 				<h4>
 					<i class="fa fa-clock-o fa-lg"></i> 
 					<span data-ng-show="campagne.nextDate">
@@ -53,9 +54,9 @@
 					<span data-ng-show="!campagne.nextDate">Date de la prochaine séance indéterminée</span>
 				</h4>
 
-				<div data-ng-show="editDate">
-				<timepicker data-ng-model="campagne.nextDate" minute-step="15" show-meridian="false"></timepicker>
-				<button class="btn btn-success btn-sm" data-ng-click="editDate=!editDate; update(true)"><i class="glyphicon glyphicon-ok"></i> Valider</button>		
+				<div data-ng-show="editDate" data-ng-show="((authentication.user) && (authentication.user._id == campagne.user._id))">
+					<timepicker data-ng-model="campagne.nextDate" minute-step="15" show-meridian="false"></timepicker>
+					<button class="btn btn-success btn-sm" data-ng-click="editDate=!editDate; update(true)"><i class="glyphicon glyphicon-ok"></i> Valider</button>		
 				</div>
 			</div>
 
